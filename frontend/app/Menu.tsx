@@ -57,38 +57,66 @@ export const Menu = () => {
 
     return (
         <div>
-            <div className='flex justify-center'>
-                <form onSubmit={handleSubmit}>
-                    <fieldset className="fieldset w-xs bg-base-200 border border-base-300 p-4 rounded-box">
-                        <legend className="fieldset-legend">Address</legend>
-                        <div className="join">
-                            <input type="text" 
-                                className="input join-item" 
-                                placeholder="Latitude"
-                                value={Latitude}
-                                onChange={(e) => setLatitude(e.target.value)} />
-                            <input type="text" 
-                                className="input join-item" 
-                                placeholder="Longitude" 
-                                value={Longitude}
-                                onChange={(e) => setLongitude(e.target.value)} />
+            <div className="card card-dash bg-base-100 w-full h-full flex-grow py-1 px-6 rounded-lg overflow-hidden">
+                <div className="card-body p-0 bg-[#FFFACB] rounded-lg h-full">
+                    <div className="flex justify-center">
+                        <form onSubmit={handleSubmit}>
+                            <fieldset className="fieldset w-xs bg-base-200 border border-base-300 p-4 rounded-box">
+                                <legend className="fieldset-legend">Address</legend>
+                                <div className="join">
+                                    <input
+                                        type="text"
+                                        className="input join-item"
+                                        placeholder="Latitude"
+                                        value={Latitude}
+                                        onChange={(e) => setLatitude(e.target.value)}
+                                    />
+                                    <input
+                                        type="text"
+                                        className="input join-item"
+                                        placeholder="Longitude"
+                                        value={Longitude}
+                                        onChange={(e) => setLongitude(e.target.value)}
+                                    />
+                                </div>
+                                <button type="submit" className="btn join-item">
+                                    Submit
+                                </button>
+                            </fieldset>
+                        </form>
+                    </div>
+    
+                    {trafficFlowData && (
+                        <div className="traffic-info">
+                            <h3>Traffic Flow Data:</h3>
+                            <p>
+                                <strong>FRC: </strong>
+                                {trafficFlowData.frc}
+                            </p>
+                            <p>
+                                <strong>Current Speed: </strong>
+                                {trafficFlowData.currentSpeed} km/h
+                            </p>
+                            <p>
+                                <strong>Free Flow Speed: </strong>
+                                {trafficFlowData.freeFlowSpeed} km/h
+                            </p>
+                            <p>
+                                <strong>Current Travel Time: </strong>
+                                {trafficFlowData.currentTravelTime} min
+                            </p>
+                            <p>
+                                <strong>Free Flow Travel Time: </strong>
+                                {trafficFlowData.freeFlowTravelTime} min
+                            </p>
+                            <p>
+                                <strong>Confidence: </strong>
+                                {trafficFlowData.confidence}
+                            </p>
                         </div>
-                        <button type="submit" className="btn join-item">submit</button>
-                    </fieldset>
-                </form>
-            </div>
-
-            {trafficFlowData && (
-                <div className="traffic-info">
-                    <h3>Traffic Flow Data:</h3>
-                    <p><strong>FRC: </strong>{trafficFlowData.frc}</p>
-                    <p><strong>Current Speed: </strong>{trafficFlowData.currentSpeed} km/h</p>
-                    <p><strong>Free Flow Speed: </strong>{trafficFlowData.freeFlowSpeed} km/h</p>
-                    <p><strong>Current Travel Time: </strong>{trafficFlowData.currentTravelTime} min</p>
-                    <p><strong>Free Flow Travel Time: </strong>{trafficFlowData.freeFlowTravelTime} min</p>
-                    <p><strong>Confidence: </strong>{trafficFlowData.confidence}</p>
+                    )}
                 </div>
-            )}
+            </div>
         </div>
-    );
+    );    
 }
