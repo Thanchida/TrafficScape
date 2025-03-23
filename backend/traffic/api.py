@@ -16,6 +16,13 @@ class Traffic(BaseModel):
     longitude: str
 
 
+class Weather(BaseModel):
+    light: str
+    temperature: str
+    humidity: str
+    pm2_5: str
+
+
 def save_to_db(frc, cur_speed, flow_speed, cur_travel_time, flow_travel_time, conf):
     try:
         con = mysql.connector.connect(
@@ -33,6 +40,7 @@ def save_to_db(frc, cur_speed, flow_speed, cur_travel_time, flow_travel_time, co
         print("Data successfully saved!")
     except mysql.connector.Error as err:
         print(f"Database error: {err}")
+
 
 @router.post('/location')
 def location(request, data: Traffic):
@@ -62,3 +70,12 @@ def location(request, data: Traffic):
         print("fail")
         print(response.text)
         return JsonResponse({"msg": "Failed to retrieve traffic data", "error": response.text}, status=response.status_code)
+
+
+@router.post('/weather')
+def weather(request, data:Weather):
+    light = data.light
+    temperature = data.temperature
+    humidity = data.humidity
+    pm2_5 = data.pm2_5
+    print(light, temperature, humidity, pm2_5)
