@@ -9,13 +9,13 @@ const poppins = Poppins({
 
 export default function Page() {
   return (
-    <main>
+    <main className={`${poppins.className}`}>
         <Navbar/>
-        <div className="grid grid-cols-5">
+        <div className="grid grid-cols-5 py-15">
             <div className="col-span-2 px-10">
                 <div className="card bg-base-100 w-96 shadow-xl w-full">
                     <div className="card-body flex items-center">
-                        <h2 className="card-title">Enter data for traffic prediction</h2>
+                        <h2 className="card-title">Enter Data for Traffic Forecasting</h2>
                         <div className="join mt-8 space-x-2 flex items-center gap-4 mb-6">
                             <div>
                                 <label className="w-full">

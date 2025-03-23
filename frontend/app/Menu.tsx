@@ -57,32 +57,27 @@ export const Menu = () => {
 
     return (
         <div>
-            <div className="card card-dash bg-base-100 w-full h-full flex-grow py-1 px-6 rounded-lg overflow-hidden">
-                <div className="card-body p-0 bg-[#FFFACB] rounded-lg h-full">
+            <div className="card bg-base-100 shadow-xl w-full">
+                <div className="card-body flex items-center">
                     <div className="flex justify-center">
                         <form onSubmit={handleSubmit}>
-                            <fieldset className="fieldset w-xs bg-base-200 border border-base-300 p-4 rounded-box">
-                                <legend className="fieldset-legend">Address</legend>
                                 <div className="join">
-                                    <input
-                                        type="text"
-                                        className="input join-item"
-                                        placeholder="Latitude"
-                                        value={Latitude}
-                                        onChange={(e) => setLatitude(e.target.value)}
-                                    />
-                                    <input
-                                        type="text"
-                                        className="input join-item"
-                                        placeholder="Longitude"
-                                        value={Longitude}
-                                        onChange={(e) => setLongitude(e.target.value)}
-                                    />
+                                    <label className="w-full">
+                                        <input type="text" 
+                                            placeholder="Latitude" 
+                                            className="input join-item w-full p-4 text-lg text-gray-700 rounded-lg shadow-md focus:ring-2 focus:ring-[#FF6B6B]"
+                                            onChange={(e) => setLatitude(e.target.value)}
+                                            />
+                                    </label>
+                                    <label className="w-full">
+                                        <input type="text" 
+                                            placeholder="Longitude" 
+                                            className="input join-item w-full p-4 text-lg text-gray-700 rounded-lg shadow-md focus:ring-2 focus:ring-[#FF6B6B]"
+                                            onChange={(e) => setLongitude(e.target.value)}
+                                            />
+                                    </label>
                                 </div>
-                                <button type="submit" className="btn join-item">
-                                    Submit
-                                </button>
-                            </fieldset>
+                                <button type="submit" className="btn join-item bg-[#FF6B6B] text-white px-6 py-2 rounded-lg shadow-md hover:bg-[#FF4757] transition-all join-item">Enter</button>
                         </form>
                     </div>
     
