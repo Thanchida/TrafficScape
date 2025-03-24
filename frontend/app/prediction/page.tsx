@@ -49,7 +49,7 @@ export default function Page() {
                         <div className="mt-8 space-x-2 gap-4 mb-6 p-2">
                             <div>
                                 <label className="w-full">
-                                    <input type="number" 
+                                    <input type="text" 
                                            placeholder="Light" 
                                            required className="w-full p-4 text-lg text-gray-700 rounded-lg shadow-md focus:ring-2 focus:ring-[#FF6B6B]"
                                            onChange={(e) => setLight(e.target.value)}/>
@@ -60,7 +60,7 @@ export default function Page() {
                         <div className="mt-8 space-x-2 gap-4 mb-6 p-2">
                             <div>
                                 <label className="w-full">
-                                    <input type="number" 
+                                    <input type="text" 
                                            placeholder="Temperature" 
                                            required className="w-full p-4 text-lg text-gray-700 rounded-lg shadow-md focus:ring-2 focus:ring-[#FF6B6B]"
                                            onChange={(e) => setTemp(e.target.value)}/>
@@ -71,7 +71,7 @@ export default function Page() {
                         <div className="mt-8 space-x-2 gap-4 mb-6 p-2">
                             <div>
                                 <label className="w-full">
-                                    <input type="number" 
+                                    <input type="text" 
                                            placeholder="Humidity" 
                                            required className="w-full p-4 text-lg text-gray-700 rounded-lg shadow-md focus:ring-2 focus:ring-[#FF6B6B]"
                                            onChange={(e) => setHumidity(e.target.value)}/>
@@ -82,7 +82,7 @@ export default function Page() {
                         <div className="mt-8 space-x-2 gap-4 mb-6 p-2">
                             <div>
                                 <label className="w-full">
-                                    <input type="number" 
+                                    <input type="text" 
                                            placeholder="pm2.5"
                                            required className="w-full p-4 text-lg text-gray-700 rounded-lg shadow-md focus:ring-2 focus:ring-[#FF6B6B]"
                                            onChange={(e) => setPM2_5(e.target.value)}/>

@@ -1,5 +1,6 @@
-from ninja import NinjaAPI
+from ninja_extra import NinjaExtraAPI
+from traffic.api import TrafficController, WeatherController
 
-api = NinjaAPI()
+api = NinjaExtraAPI()
 
-api.add_router("/traffic/", "traffic.api.router")
+api.register_controllers(TrafficController, WeatherController)

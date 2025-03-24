@@ -131,3 +131,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Traffic API key
 TOMTOM_API_KEY = config('TOMTOM_API_KEY')
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]

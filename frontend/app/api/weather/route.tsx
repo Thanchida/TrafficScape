@@ -1,7 +1,7 @@
 "use server";
 import { NextResponse } from "next/server";
 
-const DJANGO_API_WEATHER_URL = "http://127.0.0.1:8000/api/traffic/weather"
+const DJANGO_API_WEATHER_URL = "http://127.0.0.1:8000/api/weather/"
 
 export async function POST(request: Request) {
     try {

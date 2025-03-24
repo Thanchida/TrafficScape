@@ -1,6 +1,5 @@
 "use client"
 import React, { useState } from 'react'
-import Image from 'next/image'
 
 const TRAFFIC_URL = "/api/traffic/"
 
@@ -11,7 +10,6 @@ export const Menu = () => {
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        console.log(Latitude, Longitude);
         
         try {
             const response = await fetch(TRAFFIC_URL, {
@@ -26,11 +24,9 @@ export const Menu = () => {
             });
 
             const data = await response.json();
-            console.log("Data: ", data);
 
             if (data && data.data) {
                 const parsedData = JSON.parse(data.data);
-                console.log("Parsed Data: ", parsedData);
 
                 if (parsedData.flowSegmentData) {
                     const trafficData = {
@@ -43,7 +39,6 @@ export const Menu = () => {
                     };
 
                     setTrafficFlowData(trafficData);
-                    console.log("Traffic Data Set: ", trafficData);
                 } else {
                     console.error("flowSegmentData not found in the parsed data:", parsedData);
                 }
