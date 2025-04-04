@@ -135,3 +135,9 @@ TOMTOM_API_KEY = config('TOMTOM_API_KEY')
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
+
+# Database
+DB_HOST = config('DB_HOST')
+DB_USER = config('DB_USER')
+DB_PASSWD = config('DB_PASSWD')
+DB_NAME = config('DB_NAME')
