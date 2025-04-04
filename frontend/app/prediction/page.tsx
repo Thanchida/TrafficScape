@@ -91,7 +91,7 @@ export default function Page() {
                             {/* <button className="btn bg-[#FF6B6B] text-white px-6 py-2 rounded-lg shadow-md hover:bg-[#FF4757] transition-all join-item">Enter</button> */}
                         </div>
                         <button type="submit" 
-                                className="btn bg-[#FF6B6B] w-full text-white px-20 py-2 rounded-lg shadow-md hover:bg-[#FF4757] transition-all mb-1">Enter</button>
+                                className="btn bg-[#FF6B6B] w-full text-white px-20 py-2 rounded-lg shadow-md hover:bg-[#FF4757] transition-all mb-1">Predict</button>
                         </form>
                     </div>
                 </div>
