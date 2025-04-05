@@ -1,6 +1,6 @@
 from ninja_extra import NinjaExtraAPI
-from traffic.api import TrafficController, WeatherController, DescriptiveController
+from traffic.api import TrafficController, WeatherController, DescriptiveController, DistributionController
 
 api = NinjaExtraAPI()
 
-api.register_controllers(TrafficController, WeatherController, DescriptiveController)
+api.register_controllers(TrafficController, WeatherController, DescriptiveController, DistributionController)
