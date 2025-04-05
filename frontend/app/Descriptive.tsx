@@ -77,7 +77,7 @@ export default function Descriptive() {
         <h1 className="text-3xl font-bold mb-6">Sensor Data Descriptive</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-6">
           <div>
-            <div className="card bg-base-100 shadow-xl mb-20 mt-7">
+            <div className="card bg-[#C3EAFD] shadow-xl mb-20 mt-7">
               <div className="card-body flex flex-col">
                 <h2 className="text-xl font-bold">Light</h2>
                 {descriptiveLightData ? (
@@ -127,7 +127,7 @@ export default function Descriptive() {
               </div>
             </div>
 
-            <div className="card bg-base-100 shadow-xl">
+            <div className="card bg-[#C3EAFD] shadow-xl">
               <div className="card-body flex flex-col">
               <h2 className="text-xl font-bold">Pm 2.5</h2>
               {descriptivePMData ? (
