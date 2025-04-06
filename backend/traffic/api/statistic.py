@@ -19,7 +19,6 @@ class StatisticController:
                 """)
 
                 result = cs.fetchall()
-                print(result)
                 data = {
                     "light": [row[0] for row in result],
                     "temperature": [row[1] for row in result],
@@ -98,7 +97,6 @@ class StatisticController:
                 """)
 
                 result = cs.fetchall()
-                print(result)
                 data = {
                     "light": [row[0] for row in result],
                     "temperature": [row[1] for row in result],
@@ -108,7 +106,6 @@ class StatisticController:
                 df = pd.DataFrame(data)
                 corr_matrix = df.corr(method='pearson')
                 corr_dict = corr_matrix.round(3).to_dict()
-                print(corr_dict)
                 return JsonResponse({"msg": "Descriptive statistics retrieved successfully", "data": corr_dict}, status=200)
             finally:
                 print(f"Idle connections in the pool: {len(pool._idle_cache)}")
