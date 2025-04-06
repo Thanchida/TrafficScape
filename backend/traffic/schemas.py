@@ -1,8 +1,8 @@
 from ninja import Schema
 
-class TrafficSchema(Schema):
-    latitude: str
-    longitude: str
+# class TrafficSchema(Schema):
+#     latitude: str
+#     longitude: str
 
 
 class WeatherSchema(Schema):
@@ -10,3 +10,12 @@ class WeatherSchema(Schema):
     temperature: str
     humidity: str
     pm2_5: str
+
+
+class TrafficFlowSchema(Schema):
+    frc: str
+    current_speed: float
+    free_flow_speed: float
+    current_travel_time: float
+    free_flow_travel_time: float
+    confidence: float

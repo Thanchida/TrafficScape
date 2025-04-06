@@ -11,7 +11,7 @@ const poppins = Poppins({
 export default function Navbar() {
   const pathname = usePathname();
   return (
-    <main className={`${poppins.className} bg-[#F8FAFC] text-gray-800 flex flex-col py-4 px-6`}> 
+    <div className={`${poppins.className} bg-[#F8FAFC] text-gray-800 flex flex-col py-4 px-6`}> 
       <header className="flex items-center justify-between py-4 px-6 bg-white shadow-md rounded-lg">
         <div className="flex items-center">
           <h1 className="text-4xl font-bold text-[#E63946]">Traffic</h1>
@@ -31,6 +31,6 @@ export default function Navbar() {
           </ul>
         </nav>
       </header>
-    </main>
+    </div>
   );
 }
