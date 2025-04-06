@@ -5,7 +5,6 @@ const DJANGO_API_DISTRIBUTION_URL = "http://127.0.0.1:8000/api/statistic/weather
 
 export async function GET() {
     try {
-        console.log('access route');
         const response = await fetch(DJANGO_API_DISTRIBUTION_URL);
 
         if (!response.ok) {

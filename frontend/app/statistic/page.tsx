@@ -106,7 +106,6 @@ export default function Page() {
           </ul>
         </div>
 
-        {/* Scrollable Content */}
         <div className="col-span-2 px-10 py-10 overflow-y-auto h-[calc(100vh-64px)]">
           {selectedMenu === 'Descriptive' && <Descriptive />}
           {selectedMenu === 'Distribution' && <Distribution />}
