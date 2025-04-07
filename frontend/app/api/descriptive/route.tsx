@@ -1,11 +1,10 @@
 "use server";
 import { NextResponse } from "next/server";
 
-const DJANGO_API_STATISTIC_URL = "http://127.0.0.1:8000/api/descriptive/weather/"
+const DJANGO_API_STATISTIC_URL = "http://127.0.0.1:8000/api/statistic/descriptive"
 
 export async function GET() {
     try {
-        console.log('access route');
         const response = await fetch(DJANGO_API_STATISTIC_URL);
 
         if (!response.ok) {

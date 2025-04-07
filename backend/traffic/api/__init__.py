@@ -1,11 +1,11 @@
 from .traffic import TrafficController
 from .weather import WeatherController
-from .descriptive import DescriptiveController
+from .statistic import StatisticController
 from .overview import OverviewController
 
 __all__ = [
     TrafficController, 
     WeatherController,
-    DescriptiveController,
-    OverviewController,
+    StatisticController,
+    OverviewController
 ]
