@@ -55,7 +55,7 @@ export default function Home() {
     getCorrelationMatrix().then((res) => setCorrMatrix(res.correlation));
   }, []);
 
-  // Scatter: pm2.5 vs speed
+   // Scatter: pm2.5 vs speed
   const pmChartData = {
     datasets: [
       {
@@ -125,33 +125,33 @@ export default function Home() {
   };
 
   return (
-    <main className={`min-h-screen px-10 py-10 ${poppins.className}`}>
+    <main className={`min-h-screen py-10 ${poppins.className}`}>
       <Navbar />
-      <div className="space-y-14 mt-10">
+      <div className="space-y-20 mt-10 max-w-6xl mx-auto px-6 md:px-12 text-center">
 
         {/* Correlation Matrix */}
         <section>
           <h2 className="text-2xl font-bold mb-4">Correlation Matrix</h2>
           <div className="overflow-x-auto">
-            <table className="table-auto">
+            <table className="table-auto mx-auto border-collapse">
               <thead>
                 <tr>
-                  <th className="border-3 border-white p-2 bg-gray-300">Var</th>
+                  <th className="border-2 border-white p-2 bg-gray-300">Var</th>
                   {variableList.map((v) => (
-                    <th key={v} className="border-3 border-white p-2 bg-gray-200 text-sm">{v}</th>
+                    <th key={v} className="border-2 border-white p-2 bg-gray-200 text-sm">{v}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {correlationAsArray.map((row, i) => (
                   <tr key={i}>
-                    <td className="border-3 border-white p-2 font-semibold bg-gray-200 text-sm">
+                    <td className="border-2 border-white p-2 font-semibold bg-gray-200 text-sm">
                       {variableList[i]}
                     </td>
                     {row.map((val, j) => (
                       <td
                         key={j}
-                        className="border-3 border-white p-2 text-sm text-center"
+                        className="border-2 border-white p-2 text-sm text-center"
                         style={{ backgroundColor: getColor(val) }}
                       >
                         {val.toFixed(2)}
@@ -167,43 +167,67 @@ export default function Home() {
         {/* PM2.5 Scatter */}
         <section>
           <h2 className="text-2xl font-bold mb-4">PM2.5 vs Speed</h2>
-          <Scatter
-            data={pmChartData}
-            options={{
-              scales: {
-                x: { title: { display: true, text: "PM2.5 (μg/m³)" } },
-                y: { title: { display: true, text: "Speed (km/h)" } },
-              },
-            }}
-          />
+          <div className="w-full max-w-5xl mx-auto px-20">
+            <Scatter
+              data={pmChartData}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                  x: { title: { display: true, text: "PM2.5 (μg/m³)" } },
+                  y: { title: { display: true, text: "Speed (km/h)" } },
+                },
+              }}
+              height={600}
+            />
+          </div>
+          <p className="text-black text-base mt-4">
+            From the PM2.5 vs Speed graph, we observe a negative correlation. When PM2.5 increases, speed tends to decrease.
+          </p>
         </section>
 
         {/* Humidity Histogram */}
         <section>
           <h2 className="text-2xl font-bold mb-4">Humidity vs Avg Speed</h2>
-          <Bar
-            data={humidityChartData}
-            options={{
-              scales: {
-                x: { title: { display: true, text: "Humidity (%)" } },
-                y: { title: { display: true, text: "Avg Speed (km/h)" } },
-              },
-            }}
-          />
+          <div className="w-full max-w-5xl mx-auto px-20">
+            <Bar
+              data={humidityChartData}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                  x: { title: { display: true, text: "Humidity (%)" } },
+                  y: { title: { display: true, text: "Avg Speed (km/h)" } },
+                },
+              }}
+              height={600}
+            />
+          </div>
+          <p className="text-black text-base mt-4">
+            The chart shows average speed grouped by humidity. Extremely high humidity (above 75%) seems to lower speed.
+          </p>
         </section>
 
         {/* Light Scatter */}
         <section>
           <h2 className="text-2xl font-bold mb-4">Light vs Speed</h2>
-          <Scatter
-            data={lightChartData}
-            options={{
-              scales: {
-                x: { title: { display: true, text: "Light (lux)" } },
-                y: { title: { display: true, text: "Speed (km/h)" } },
-              },
-            }}
-          />
+          <div className="w-full max-w-5xl mx-auto px-20">
+            <Scatter
+              data={lightChartData}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                  x: { title: { display: true, text: "Light (lux)" } },
+                  y: { title: { display: true, text: "Speed (km/h)" } },
+                },
+              }}
+              height={600}
+            />
+          </div>
+          <p className="text-black text-base mt-4">
+            The graph shows a weak negative correlation. Speed slightly decreases as light intensity increases.
+          </p>
         </section>
       </div>
     </main>
