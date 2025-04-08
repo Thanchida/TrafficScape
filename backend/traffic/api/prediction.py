@@ -1,9 +1,6 @@
-from flask import abort
 from ninja_extra import api_controller
-from ninja_extra import http_post, http_get
-from django.conf import settings
+from ninja_extra import http_post
 from django.http import JsonResponse
-from mysite.db import pool
 import pandas as pd
 from ..schemas import WeatherSchema
 from ..ml.train import train_model
@@ -18,10 +15,10 @@ class PredictionController:
         temperature = float(data.temperature)
         humidity = float(data.humidity)
         pm2_5 = float(data.pm2_5)
-        data = {"light": light,
-                "temperature": temperature,
+        data = {"pm2_5": pm2_5,
+                "light": light,
                 "humidity": humidity,
-                "pm2_5": pm2_5}
+                "temperature": temperature}
         df = pd.DataFrame([data])
         # train_model()
         traffic_prediction = predict(df)
