@@ -6,7 +6,6 @@ const DJANGO_API_WEATHER_URL = "http://127.0.0.1:8000/api/prediction/weather"
 export async function POST(request: Request) {
     try {
         const requestData = await request.json();
-        console.log("Request Data:", requestData);
 
         const response = await fetch(DJANGO_API_WEATHER_URL, {
             method: "POST",
@@ -19,7 +18,6 @@ export async function POST(request: Request) {
         }
 
         const responseData = await response.json();
-        console.log("Response Data:", responseData);
 
         return NextResponse.json(responseData, { status: 200 });
     } catch (error) {

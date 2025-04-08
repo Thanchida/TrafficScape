@@ -22,5 +22,4 @@ class PredictionController:
         df = pd.DataFrame([data])
         # train_model()
         traffic_prediction = predict(df)
-        print(traffic_prediction)
         return JsonResponse({"msg": "Traffic prediction retrieved successfully", "data": traffic_prediction}, status=200)
