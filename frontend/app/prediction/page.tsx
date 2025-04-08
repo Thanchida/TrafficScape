@@ -48,7 +48,8 @@ export default function Page() {
     }
 
     const predictionArray = Object.entries(predictionData);
-    const Colors = ['#F17171', '#FDE2E4', '#F6F17E', '#A6EAB6'];
+    const Colors = ['#FFF9B0', '#FFE7AF', '#FFED7D', '#FFD370'];
+
   return (
     <main className={`${poppins.className}`}>
         <Navbar/>
@@ -104,20 +105,27 @@ export default function Page() {
                     </div>
                 </div>
             </div>
-            <div className="col-span-3 flex justify-center items-center">
-                {predictionData ? 
-                <div>
-                    {predictionArray.map(([key, value], index) => (
-                        <div className="card bg-[#C3EAFD] shadow-xl mb-12 mt-7 px-25"
-                             style={{ backgroundColor: Colors[index % Colors.length] }}
-                             key={index}>
-                            <div className="card-body flex flex-col">
-                                <p className="text-lg">{key}: {value}</p>
-                            </div>
+            <div className="col-span-3 flex justify-center">
+                {predictionData && predictionArray.length > 0 ? (
+                    <div className="card shadow-xl p-6 w-full max-w-4xl bg-white rounded-2xl">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
+                            {predictionArray.map(([key, value], index) => (
+                                <div
+                                    key={index}
+                                    className="bg-white rounded-xl shadow-md flex flex-col justify-center items-center p-6 mb-10 mt-15"
+                                    style={{
+                                        backgroundColor: Colors[index % Colors.length],
+                                    }}
+                                >
+                                    <p className="text-md font-semibold text-gray-800">{key}</p>
+                                    <p className="text-lg font-bold text-gray-900 mt-2">{value}</p>
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div> :
-                <h1>Traffic flow result</h1>}
+                    </div>
+                ) : (
+                    <h1 className="text-lg text-gray-500 mt-10">Traffic flow result will appear here</h1>
+                )}
             </div>
         </div>
     </main>
