@@ -1,20 +1,25 @@
 "use client";
 import { Poppins } from "next/font/google";
 import Navbar from "../components/Navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const poppins = Poppins({
   weight: ['400', '700'],
   subsets: ['latin'],
 });
 
-const WEATHER_URL = "/api/weather/"
+const WEATHER_URL = "/api/prediction/"
 
 export default function Page() {
     const [Light, setLight] = useState('');
     const [Temp, setTemp] = useState('');
     const [Humidity, setHumidity] = useState('');
     const [PM2_5, setPM2_5] = useState('');
+    const [predictionData, setPredictionData] = useState([]);
+
+    useEffect(() => {
+        console.log('prediction result updated');
+    }, [predictionData])
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -33,10 +38,17 @@ export default function Page() {
                     pm2_5: PM2_5 ? PM2_5: null,
                 })
             });
+
+            const prediction_data = await response.json();
+            console.log(prediction_data);
+            setPredictionData(prediction_data.data);
         }catch (error) {
             console.error('Error during request: ', error);
         }
     }
+
+    const predictionArray = Object.entries(predictionData);
+    const Colors = ['#F17171', '#FDE2E4', '#F6F17E', '#A6EAB6'];
   return (
     <main className={`${poppins.className}`}>
         <Navbar/>
@@ -55,7 +67,6 @@ export default function Page() {
                                            onChange={(e) => setLight(e.target.value)}/>
                                 </label>
                             </div>
-                            {/* <button className="btn bg-[#FF6B6B] text-white px-6 py-2 rounded-lg shadow-md hover:bg-[#FF4757] transition-all join-item">Enter</button> */}
                         </div>
                         <div className="mt-8 space-x-2 gap-4 mb-6 p-2">
                             <div>
@@ -66,7 +77,6 @@ export default function Page() {
                                            onChange={(e) => setTemp(e.target.value)}/>
                                 </label>
                             </div>
-                            {/* <button className="btn bg-[#FF6B6B] text-white px-6 py-2 rounded-lg shadow-md hover:bg-[#FF4757] transition-all join-item">Enter</button> */}
                         </div>
                         <div className="mt-8 space-x-2 gap-4 mb-6 p-2">
                             <div>
@@ -77,7 +87,6 @@ export default function Page() {
                                            onChange={(e) => setHumidity(e.target.value)}/>
                                 </label>
                             </div>
-                            {/* <button className="btn bg-[#FF6B6B] text-white px-6 py-2 rounded-lg shadow-md hover:bg-[#FF4757] transition-all join-item">Enter</button> */}
                         </div>
                         <div className="mt-8 space-x-2 gap-4 mb-6 p-2">
                             <div>
@@ -88,7 +97,6 @@ export default function Page() {
                                            onChange={(e) => setPM2_5(e.target.value)}/>
                                 </label>
                             </div>
-                            {/* <button className="btn bg-[#FF6B6B] text-white px-6 py-2 rounded-lg shadow-md hover:bg-[#FF4757] transition-all join-item">Enter</button> */}
                         </div>
                         <button type="submit" 
                                 className="btn bg-[#FF6B6B] w-full text-white px-20 py-2 rounded-lg shadow-md hover:bg-[#FF4757] transition-all mb-1">Predict</button>
@@ -97,7 +105,19 @@ export default function Page() {
                 </div>
             </div>
             <div className="col-span-3 flex justify-center items-center">
-                <h1>Traffic flow result</h1>
+                {predictionData ? 
+                <div>
+                    {predictionArray.map(([key, value], index) => (
+                        <div className="card bg-[#C3EAFD] shadow-xl mb-12 mt-7 px-25"
+                             style={{ backgroundColor: Colors[index % Colors.length] }}
+                             key={index}>
+                            <div className="card-body flex flex-col">
+                                <p className="text-lg">{key}: {value}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div> :
+                <h1>Traffic flow result</h1>}
             </div>
         </div>
     </main>

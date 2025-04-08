@@ -50,7 +50,7 @@ export const Distribution = () => {
     }
   };
 
-  const createHistogramData = (inputData: number[], binSize: number = 10) => {
+  const createHistogramData = (inputData: number[], binSize: number = 100) => {
     const bins: { [key: string]: number } = {};
   
     inputData.forEach((value) => {
