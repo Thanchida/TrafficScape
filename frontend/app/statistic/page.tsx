@@ -24,8 +24,10 @@ export default function Page() {
       <Navbar />
       <div className="grid grid-cols-3 flex-grow gap-5 overflow-hidden">
         <div className="grid col-span-1 h-full">
-          <ul className="menu rounded-box w-full shadow-xl px-20 py-30 flex flex-col justify-between">
+          <ul id="statistic-menu-bar"
+              className="menu rounded-box w-full shadow-xl px-20 py-30 flex flex-col justify-between">
             <li
+              id="descriptive"
               className={`mb-10 text-xl ${
                 selectedMenu === 'Descriptive'
                   ? 'bg-[#FF6B6B] font-bold rounded-full py-2 px-4 text-white'
@@ -52,6 +54,7 @@ export default function Page() {
               </a>
             </li>
             <li
+              id="distribution"
               className={`mb-10 text-xl ${
                 selectedMenu === 'Distribution'
                   ? 'bg-[#FF6B6B] font-bold rounded-full py-2 px-4 text-white'
@@ -78,6 +81,7 @@ export default function Page() {
               </a>
             </li>
             <li
+              id="correlation"
               className={`mb-10 text-xl ${
                 selectedMenu === 'Correlation'
                   ? 'bg-[#FF6B6B] font-bold rounded-full py-2 px-4 text-white'

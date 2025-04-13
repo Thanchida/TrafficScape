@@ -83,6 +83,7 @@ export const Distribution = () => {
       <section>
         <h2 className="text-2xl font-bold mb-4">Light Distribution</h2>
         <Bar
+          id='light-distribution'
           data={{
             labels: lightHistogram.labels,
             datasets: [
@@ -107,6 +108,7 @@ export const Distribution = () => {
       <section className="mt-8">
         <h2 className="text-2xl font-bold mb-4">Temperature Distribution</h2>
         <Bar
+          id='temperature-distribution'
           data={{
             labels: tempHistogram.labels,
             datasets: [
@@ -131,6 +133,7 @@ export const Distribution = () => {
       <section className="mt-8">
         <h2 className="text-2xl font-bold mb-4">Humidity Distribution</h2>
         <Bar
+          id='humidity-distribution'
           data={{
             labels: tempHistogram.labels,
             datasets: [
@@ -155,6 +158,7 @@ export const Distribution = () => {
       <section className="mt-8">
         <h2 className="text-2xl font-bold mb-4">Pm2.5 Distribution</h2>
         <Bar
+          id='pm-distribution'
           data={{
             labels: tempHistogram.labels,
             datasets: [

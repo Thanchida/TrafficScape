@@ -37,7 +37,6 @@ interface descriptivePM{
   max_pm2_5: number;
 }
 export default function Descriptive() {
-  const [descriptiveTrafficData, setDescriptiveTrafficData] = useState([]);
   const [descriptiveLightData, setDescriptiveLightData] = useState<DescriptiveLight | null>(null);
   const [descriptiveTemperatureData, setDescriptiveTemperatureData] = useState<descriptiveTemperature | null>(null);
   const [descriptiveHumidityData, setDescriptiveHumidityData] = useState<descriptiveHumidity | null>(null);
@@ -77,7 +76,8 @@ export default function Descriptive() {
         <h1 className="text-3xl font-bold mb-6">Sensor Data Descriptive</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-6">
           <div>
-            <div className="card bg-[#C3EAFD] shadow-xl mb-20 mt-7">
+            <div id="light-descriptive-card"
+                 className="card bg-[#C3EAFD] shadow-xl mb-20 mt-7">
               <div className="card-body flex flex-col">
                 <h2 className="text-xl font-bold">Light</h2>
                 {descriptiveLightData ? (
@@ -93,7 +93,8 @@ export default function Descriptive() {
               </div>
             </div>
 
-            <div className="card bg-[#EFFDFF] shadow-xl">
+            <div id="temperature-descriptive-card"
+                 className="card bg-[#EFFDFF] shadow-xl">
               <div className="card-body flex flex-col">
                 <h2 className="text-xl font-bold">Temperature</h2>
                 {descriptiveTemperatureData ? (
@@ -111,7 +112,8 @@ export default function Descriptive() {
           </div>
 
           <div>
-            <div className="card bg-[#EFFDFF] shadow-xl mb-20 mt-7">
+            <div id="humidity-descriptive-card"
+                 className="card bg-[#EFFDFF] shadow-xl mb-20 mt-7">
               <div className="card-body flex flex-col">
               <h2 className="text-xl font-bold">Humidity</h2>
               {descriptiveHumidityData ? (
@@ -127,7 +129,8 @@ export default function Descriptive() {
               </div>
             </div>
 
-            <div className="card bg-[#C3EAFD] shadow-xl">
+            <div id="pm-descriptive-card"
+                 className="card bg-[#C3EAFD] shadow-xl">
               <div className="card-body flex flex-col">
               <h2 className="text-xl font-bold">Pm 2.5</h2>
               {descriptivePMData ? (

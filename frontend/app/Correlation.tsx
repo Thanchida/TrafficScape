@@ -37,7 +37,8 @@ export const Correlation = () => {
 
       <section className='w-full'>
           <div className="overflow-x-auto w-full">
-            <table className="table-auto w-full mt-10 min-h-[400px]">
+            <table id='weather-correlation'
+                   className="table-auto w-full mt-10 min-h-[400px]">
               <thead>
                 <tr>
                   <th className="border-3 border-white p-2 bg-[#FFD370] text-white">Correlation</th>
