@@ -125,7 +125,7 @@ export default function Home() {
   };
 
   return (
-    <main className={`min-h-screen py-10 ${poppins.className}`}>
+    <main className={`min-h-screen ${poppins.className}`}>
       <Navbar />
       <div className="space-y-20 mt-10 max-w-6xl mx-auto px-6 md:px-12 text-center">
 
