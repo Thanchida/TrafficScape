@@ -133,7 +133,7 @@ export default function Home() {
         <section>
           <h2 className="text-2xl font-bold mb-4">Correlation Matrix</h2>
           <div className="overflow-x-auto">
-            <table className="table-auto mx-auto border-collapse">
+            <table id="traffic-weather-correlation" className="table-auto mx-auto border-collapse">
               <thead>
                 <tr>
                   <th className="border-2 border-white p-2 bg-gray-300">Var</th>
@@ -169,6 +169,7 @@ export default function Home() {
           <h2 className="text-2xl font-bold mb-4">PM2.5 vs Speed</h2>
           <div className="w-full max-w-5xl mx-auto px-20">
             <Scatter
+              id="pm-speed-chart"
               data={pmChartData}
               options={{
                 responsive: true,
@@ -191,6 +192,7 @@ export default function Home() {
           <h2 className="text-2xl font-bold mb-4">Humidity vs Avg Speed</h2>
           <div className="w-full max-w-5xl mx-auto px-20">
             <Bar
+              id="humidity-speed-chart"
               data={humidityChartData}
               options={{
                 responsive: true,
@@ -213,6 +215,7 @@ export default function Home() {
           <h2 className="text-2xl font-bold mb-4">Light vs Speed</h2>
           <div className="w-full max-w-5xl mx-auto px-20">
             <Scatter
+              id="light-speed-chart"
               data={lightChartData}
               options={{
                 responsive: true,

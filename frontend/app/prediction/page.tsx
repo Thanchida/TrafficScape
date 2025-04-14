@@ -61,8 +61,11 @@ export default function Page() {
                         <form onSubmit={handleSubmit} className="space-y-10 w-full">
                         <div className="mt-8 space-x-2 gap-4 mb-6 p-2">
                             <div>
-                                <label className="w-full">
-                                    <input type="text" 
+                                <label className="w-full px-2 py-1">
+                                    Light
+                                    <input id="light-input"
+                                            value={Light}
+                                           type="text" 
                                            placeholder="Light" 
                                            required className="w-full p-4 text-lg text-gray-700 rounded-lg shadow-md focus:ring-2 focus:ring-[#FF6B6B]"
                                            onChange={(e) => setLight(e.target.value)}/>
@@ -71,8 +74,11 @@ export default function Page() {
                         </div>
                         <div className="mt-8 space-x-2 gap-4 mb-6 p-2">
                             <div>
-                                <label className="w-full">
-                                    <input type="text" 
+                                <label className="w-full px-2 py-1">
+                                    Temperature
+                                    <input id="temperature-input"
+                                           value={Temp}
+                                           type="text" 
                                            placeholder="Temperature" 
                                            required className="w-full p-4 text-lg text-gray-700 rounded-lg shadow-md focus:ring-2 focus:ring-[#FF6B6B]"
                                            onChange={(e) => setTemp(e.target.value)}/>
@@ -81,8 +87,11 @@ export default function Page() {
                         </div>
                         <div className="mt-8 space-x-2 gap-4 mb-6 p-2">
                             <div>
-                                <label className="w-full">
-                                    <input type="text" 
+                                <label className="w-full px-2 py-1">
+                                    Humidity
+                                    <input id="humidity-input"
+                                           value={Humidity}
+                                           type="text" 
                                            placeholder="Humidity" 
                                            required className="w-full p-4 text-lg text-gray-700 rounded-lg shadow-md focus:ring-2 focus:ring-[#FF6B6B]"
                                            onChange={(e) => setHumidity(e.target.value)}/>
@@ -91,15 +100,19 @@ export default function Page() {
                         </div>
                         <div className="mt-8 space-x-2 gap-4 mb-6 p-2">
                             <div>
-                                <label className="w-full">
-                                    <input type="text" 
+                                <label className="w-full px-2 py-1">
+                                    Pm2.5
+                                    <input id="pm-input"
+                                           value={PM2_5}
+                                           type="text" 
                                            placeholder="pm2.5"
                                            required className="w-full p-4 text-lg text-gray-700 rounded-lg shadow-md focus:ring-2 focus:ring-[#FF6B6B]"
                                            onChange={(e) => setPM2_5(e.target.value)}/>
                                 </label>
                             </div>
                         </div>
-                        <button type="submit" 
+                        <button id="predict-button"
+                                type="submit" 
                                 className="btn bg-[#FF6B6B] w-full text-white px-20 py-2 rounded-lg shadow-md hover:bg-[#FF4757] transition-all mb-1">Predict</button>
                         </form>
                     </div>
@@ -107,7 +120,8 @@ export default function Page() {
             </div>
             <div className="col-span-3 flex justify-center">
                 {predictionData && predictionArray.length > 0 ? (
-                    <div className="card shadow-xl p-6 w-full max-w-4xl bg-white rounded-2xl">
+                    <div id="prediction-card"
+                         className="card shadow-xl p-6 w-full max-w-4xl bg-white rounded-2xl">
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
                             {predictionArray.map(([key, value], index) => (
                                 <div
