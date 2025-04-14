@@ -181,12 +181,12 @@ export default function Home() {
           </p>
         </section>
 
-        {/* Humidity Histogram */}
+        {/* PM2.5 Vs Travel Time Scatter */}
         <section>
           <h2 className="text-2xl font-bold mb-4">PM2.5 vs Travel Time</h2>
           <div className="w-full max-w-5xl mx-auto px-20">
             <Scatter
-              id="humidity-speed-chart"
+              id="pm-time-chart"
               data={pmTimeChartData}
               options={{
                 responsive: true,
