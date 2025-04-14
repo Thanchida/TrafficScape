@@ -106,7 +106,7 @@ export default function Page() {
                                            value={PM2_5}
                                            type="text" 
                                            placeholder="pm2.5"
-                                           required className="w-full p-4 text-md text-gray-700 rounded-lg shadow-md focus:ring-2 focus:ring-[#FF6B6B]"
+                                           required className="w-full p-4 text-lg text-gray-700 rounded-lg shadow-md focus:ring-2 focus:ring-[#FF6B6B]"
                                            onChange={(e) => setPM2_5(e.target.value)}/>
                                 </label>
                             </div>
