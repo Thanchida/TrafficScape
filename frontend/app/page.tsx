@@ -111,6 +111,7 @@ export default function Home() {
   };
 
   // correlation heatmap
+  console.log(corrMatrix);
   const variableList = Object.keys(corrMatrix);
   const correlationAsArray = variableList.map((row) =>
     variableList.map((col) => corrMatrix[row]?.[col] ?? 0)
