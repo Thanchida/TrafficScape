@@ -11,6 +11,14 @@ def remove_outliers_iqr(df, columns):
     return df
 
 
+def replace_missing_value(df, columns):
+    for col in columns:
+        if df[col].isnull().any():
+            mean_val = df[col].mean()
+            df[col].fillna(mean_val, inplace=True)
+    return df
+
+
 def normalize_column(df, column):
     scaler = MinMaxScaler()
     df[column] = scaler.fit_transform(df[[column]])

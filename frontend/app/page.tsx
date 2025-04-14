@@ -44,13 +44,13 @@ export default function Home() {
   const pathname = usePathname();
 
   const [pmData, setPmData] = useState<any[]>([]);
-  const [humidityData, setHumidityData] = useState<any[]>([]);
+  const [pmTimeData, setPmTimeData] = useState<any[]>([]);
   const [lightData, setLightData] = useState<any[]>([]);
   const [corrMatrix, setCorrMatrix] = useState<Record<string, Record<string, number>>>({});
 
   useEffect(() => {
     getPm25VsSpeed().then((res) => setPmData(res.data));
-    getHumidityVsSpeed().then((res) => setHumidityData(res.data));
+    getHumidityVsSpeed().then((res) => setPmTimeData(res.data));
     getLightVsSpeed().then((res) => setLightData(res.data));
     getCorrelationMatrix().then((res) => setCorrMatrix(res.correlation));
   }, []);
@@ -71,25 +71,18 @@ export default function Home() {
     ],
   };
 
-  // Bar: humidity vs speed
-  const humidityGroups = humidityData.reduce((acc, d) => {
-    const group = Math.round(d.humidity / 5) * 5;
-    acc[group] = acc[group] || [];
-    acc[group].push(d.current_speed);
-    return acc;
-  }, {} as Record<number, number[]>);
-
-  const humidityLabels = Object.keys(humidityGroups).sort((a, b) => +a - +b);
-  const humidityChartData = {
-    labels: humidityLabels,
+  // Scatter: pm2.5 vs travel time
+  const pmTimeChartData = {
     datasets: [
       {
-        label: "Average Speed by Humidity %",
-        data: humidityLabels.map((label) => {
-          const speeds = humidityGroups[+label];
-          return speeds.reduce((a: any, b: any) => a + b, 0) / speeds.length;
-        }),
-        backgroundColor: "rgba(54, 162, 235, 0.6)",
+        label: "PM2.5 vs Travel Time",
+        data: pmTimeData.map((d) => ({ x: d.pm2_5, y: d.current_travel_time })),
+        backgroundColor: "rgba(144, 238, 144, 0.6)",
+        trendlineLinear: {
+          style: "rgba(255,105,180,0.8)",
+          lineStyle: "solid",
+          width: 2,
+        },
       },
     ],
   };
@@ -190,24 +183,24 @@ export default function Home() {
 
         {/* Humidity Histogram */}
         <section>
-          <h2 className="text-2xl font-bold mb-4">Humidity vs Avg Speed</h2>
+          <h2 className="text-2xl font-bold mb-4">PM2.5 vs Travel Time</h2>
           <div className="w-full max-w-5xl mx-auto px-20">
-            <Bar
+            <Scatter
               id="humidity-speed-chart"
-              data={humidityChartData}
+              data={pmTimeChartData}
               options={{
                 responsive: true,
                 maintainAspectRatio: false,
                 scales: {
-                  x: { title: { display: true, text: "Humidity (%)" } },
-                  y: { title: { display: true, text: "Avg Speed (km/h)" } },
+                  x: { title: { display: true, text: "PM2.5 (μg/m³)" } },
+                  y: { title: { display: true, text: "Travel Time (seconds)" } },
                 },
               }}
               height={600}
             />
           </div>
           <p className="text-black text-base mt-4">
-            The chart shows average speed grouped by humidity. Extremely high humidity (above 75%) seems to lower speed.
+          From the PM2.5 vs Travel Time graph, we observe a positve correlation. When PM2.5 increases, Travel Time tends to increase too.
           </p>
         </section>
 
