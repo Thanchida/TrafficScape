@@ -28,7 +28,7 @@ class OverviewController:
                 print(f"Idle connections in the pool: {len(pool._idle_cache)}")
 
 
-    @http_get("/humidity_speed/")
+    @http_get("/pm_time/")
     def humidity_vs_speed(self):
         with pool.connection() as conn, conn.cursor() as cs:
             try:

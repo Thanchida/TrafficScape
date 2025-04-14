@@ -30,7 +30,7 @@ ChartJS.register(
 
 import {
   getPm25VsSpeed,
-  getHumidityVsSpeed,
+  getPm25VsTravelTime,
   getLightVsSpeed,
   getCorrelationMatrix,
 } from "./api/overview/route";
@@ -50,7 +50,7 @@ export default function Home() {
 
   useEffect(() => {
     getPm25VsSpeed().then((res) => setPmData(res.data));
-    getHumidityVsSpeed().then((res) => setPmTimeData(res.data));
+    getPm25VsTravelTime().then((res) => setPmTimeData(res.data));
     getLightVsSpeed().then((res) => setLightData(res.data));
     getCorrelationMatrix().then((res) => setCorrMatrix(res.correlation));
   }, []);
