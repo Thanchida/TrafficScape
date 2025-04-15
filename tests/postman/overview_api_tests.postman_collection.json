@@ -1,0 +1,224 @@
+{
+	"info": {
+		"_postman_id": "d1ceb5ab-da71-43e8-85c9-a7acd939c928",
+		"name": "Overview API Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44102729",
+		"_collection_link": "https://thanchida.postman.co/workspace/741435cf-f8b3-4a02-808c-d53c806e0cd7/collection/44102729-d1ceb5ab-da71-43e8-85c9-a7acd939c928?action=share&source=collection_link&creator=44102729"
+	},
+	"item": [
+		{
+			"name": "pm25_speed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response contains pm2_5 and current_speed\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property(\"data\");",
+							"    if (jsonData.data.length > 0) {",
+							"        pm.expect(jsonData.data[0]).to.have.property(\"pm2_5\");",
+							"        pm.expect(jsonData.data[0]).to.have.property(\"current_speed\");",
+							"    }",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/overview/pm25_speed/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"overview",
+						"pm25_speed",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pm25_time",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response contains pm2_5 and current_travel_time\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property(\"data\");",
+							"    if (jsonData.data.length > 0) {",
+							"        pm.expect(jsonData.data[0]).to.have.property(\"pm2_5\");",
+							"        pm.expect(jsonData.data[0]).to.have.property(\"current_travel_time\");",
+							"    }",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/overview/pm_time/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"overview",
+						"pm_time",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "light_speed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response contains light and current_speed\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property(\"data\");",
+							"    if (jsonData.data.length > 0) {",
+							"        pm.expect(jsonData.data[0]).to.have.property(\"light\");",
+							"        pm.expect(jsonData.data[0]).to.have.property(\"current_speed\");",
+							"    }",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/overview/light_speed/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"overview",
+						"light_speed",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "correlation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Correlation matrix contains all expected keys\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    const corr = jsonData[\"correlation\"];",
+							"    const expected_keys = [\"light\", \"temperature\", \"humidity\", \"pm2_5\", \"current_speed\", \"current_travel_time\"];",
+							"",
+							"    expected_keys.forEach(function(key) {",
+							"        pm.expect(corr).to.have.property(key);",
+							"        expected_keys.forEach(function(innerKey) {",
+							"            pm.expect(corr[key]).to.have.property(innerKey);",
+							"            pm.expect(typeof corr[key][innerKey]).to.eql(\"number\");",
+							"        });",
+							"    });",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/overview/correlation/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"overview",
+						"correlation",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
