@@ -4,6 +4,7 @@ from ninja_extra import http_post, http_get
 from django.conf import settings
 from django.http import JsonResponse
 from mysite.db import pool
+from ..data_utils import remove_outliers_iqr
 import pandas as pd
 
 
@@ -15,7 +16,7 @@ class StatisticController:
             try:
                 cs.execute("""
                     SELECT light, temperature, humidity, pm2_5
-                    FROM test_combine
+                    FROM combined_weather_traffic
                 """)
 
                 result = cs.fetchall()
@@ -52,7 +53,7 @@ class StatisticController:
                         ROUND(STDDEV(pm2_5), 2) AS stddev_pm2_5,
                         ROUND(MIN(pm2_5), 2) AS min_pm2_5,
                         ROUND(MAX(pm2_5), 2) AS max_pm2_5
-                    FROM weather_data
+                    FROM combined_weather_traffic
                 """)
 
                 result = cs.fetchone()
@@ -93,7 +94,7 @@ class StatisticController:
             try:
                 cs.execute("""
                     SELECT light, temperature, humidity, pm2_5
-                    FROM test_combine
+                    FROM combined_weather_traffic
                 """)
 
                 result = cs.fetchall()
@@ -104,6 +105,7 @@ class StatisticController:
                     "pm2_5": [row[3] for row in result],
                 }
                 df = pd.DataFrame(data)
+                df = remove_outliers_iqr(df, ['light', 'temperature', 'humidity', 'pm2_5'])
                 corr_matrix = df.corr(method='pearson')
                 corr_dict = corr_matrix.round(3).to_dict()
                 return JsonResponse({"msg": "Descriptive statistics retrieved successfully", "data": corr_dict}, status=200)

@@ -5,8 +5,8 @@ export async function getPm25VsSpeed() {
   return res.json();
 }
 
-export async function getHumidityVsSpeed() {
-  const res = await fetch("http://localhost:8000/api/overview/humidity_speed/");
+export async function getPm25VsTravelTime() {
+  const res = await fetch("http://localhost:8000/api/overview/pm_time/");
   return res.json();
 }
 

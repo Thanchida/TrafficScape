@@ -21,10 +21,26 @@ export default function Page() {
         console.log('prediction result updated');
     }, [predictionData])
 
+    function isValidNumber(value: string) {
+        return value.trim() !== "" && !isNaN(Number(value));
+    }
+    
+
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
+    
+        if (
+            !isValidNumber(Light) ||
+            !isValidNumber(Temp) ||
+            !isValidNumber(Humidity) ||
+            !isValidNumber(PM2_5)
+        ) {
+            alert("⚠️ Please enter valid numeric values for all fields.");
+            return;
+        }        
+    
         console.log(Light, Temp, Humidity, PM2_5);
-
+    
         try {
             const response = await fetch(WEATHER_URL, {
                 method: 'POST',
@@ -32,20 +48,20 @@ export default function Page() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    light: Light ? Light: null,
-                    temperature: Temp ? Temp: null,
-                    humidity: Humidity ? Humidity: null,
-                    pm2_5: PM2_5 ? PM2_5: null,
+                    light: Light,
+                    temperature: Temp,
+                    humidity: Humidity,
+                    pm2_5: PM2_5
                 })
             });
-
+    
             const prediction_data = await response.json();
             console.log(prediction_data);
             setPredictionData(prediction_data.data);
-        }catch (error) {
+        } catch (error) {
             console.error('Error during request: ', error);
         }
-    }
+    }    
 
     const predictionArray = Object.entries(predictionData);
     const Colors = ['#FFF9B0', '#FFE7AF', '#FFED7D', '#FFD370'];
@@ -60,54 +76,94 @@ export default function Page() {
                         <h2 className="card-title">Enter Data for Traffic Forecasting</h2>
                         <form onSubmit={handleSubmit} className="space-y-10 w-full">
                         <div className="mt-8 space-x-2 gap-4 mb-6 p-2">
-                            <div>
-                                <label className="w-full px-2 py-1">
-                                    Light
-                                    <input id="light-input"
-                                            value={Light}
-                                           type="text" 
-                                           placeholder="Light" 
-                                           required className="w-full p-4 text-lg text-gray-700 rounded-lg shadow-md focus:ring-2 focus:ring-[#FF6B6B]"
-                                           onChange={(e) => setLight(e.target.value)}/>
+                            <div className="relative w-full">
+                                <input
+                                id="light-input"
+                                type="text"
+                                required
+                                value={Light}
+                                onChange={(e) => setLight(e.target.value)}
+                                placeholder=" "
+                                className="peer w-full p-4 pt-6 pb-2 text-lg text-gray-700 bg-white rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-[#FF6B6B]"
+                                />
+                                <label
+                                htmlFor="light-input"
+                                className={`
+                                    absolute left-4 text-gray-500 transition-all duration-200 ease-in-out
+                                    ${Light ? 'top-2 text-sm' : 'top-4 text-lg'}
+                                    peer-focus:top-2 peer-focus:text-sm
+                                `}
+                                >
+                                Light
                                 </label>
                             </div>
                         </div>
                         <div className="mt-8 space-x-2 gap-4 mb-6 p-2">
-                            <div>
-                                <label className="w-full px-2 py-1">
-                                    Temperature
-                                    <input id="temperature-input"
-                                           value={Temp}
-                                           type="text" 
-                                           placeholder="Temperature" 
-                                           required className="w-full p-4 text-lg text-gray-700 rounded-lg shadow-md focus:ring-2 focus:ring-[#FF6B6B]"
-                                           onChange={(e) => setTemp(e.target.value)}/>
+                            <div className="relative w-full">
+                                <input
+                                id="temperature-input"
+                                type="text"
+                                required
+                                value={Temp}
+                                onChange={(e) => setTemp(e.target.value)}
+                                placeholder=" "
+                                className="peer w-full p-4 pt-6 pb-2 text-lg text-gray-700 bg-white rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-[#FF6B6B]"
+                                />
+                                <label
+                                htmlFor="temperature-input"
+                                className={`
+                                    absolute left-4 text-gray-500 transition-all duration-200 ease-in-out
+                                    ${Temp ? 'top-2 text-sm' : 'top-4 text-lg'}
+                                    peer-focus:top-2 peer-focus:text-sm
+                                `}
+                                >
+                                Temperature
                                 </label>
                             </div>
                         </div>
                         <div className="mt-8 space-x-2 gap-4 mb-6 p-2">
-                            <div>
-                                <label className="w-full px-2 py-1">
-                                    Humidity
-                                    <input id="humidity-input"
-                                           value={Humidity}
-                                           type="text" 
-                                           placeholder="Humidity" 
-                                           required className="w-full p-4 text-lg text-gray-700 rounded-lg shadow-md focus:ring-2 focus:ring-[#FF6B6B]"
-                                           onChange={(e) => setHumidity(e.target.value)}/>
+                            <div className="relative w-full">
+                                <input
+                                id="humidity-input"
+                                type="text"
+                                required
+                                value={Humidity}
+                                onChange={(e) => setHumidity(e.target.value)}
+                                placeholder=" "
+                                className="peer w-full p-4 pt-6 pb-2 text-lg text-gray-700 bg-white rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-[#FF6B6B]"
+                                />
+                                <label
+                                htmlFor="humidity-input"
+                                className={`
+                                    absolute left-4 text-gray-500 transition-all duration-200 ease-in-out
+                                    ${Humidity ? 'top-2 text-sm' : 'top-4 text-lg'}
+                                    peer-focus:top-2 peer-focus:text-sm
+                                `}
+                                >
+                                Humidity
                                 </label>
                             </div>
                         </div>
                         <div className="mt-8 space-x-2 gap-4 mb-6 p-2">
-                            <div>
-                                <label className="w-full px-2 py-1">
-                                    Pm2.5
-                                    <input id="pm-input"
-                                           value={PM2_5}
-                                           type="text" 
-                                           placeholder="pm2.5"
-                                           required className="w-full p-4 text-lg text-gray-700 rounded-lg shadow-md focus:ring-2 focus:ring-[#FF6B6B]"
-                                           onChange={(e) => setPM2_5(e.target.value)}/>
+                            <div className="relative w-full">
+                                <input
+                                id="pm-input"
+                                type="text"
+                                required
+                                value={PM2_5}
+                                onChange={(e) => setPM2_5(e.target.value)}
+                                placeholder=" "
+                                className="peer w-full p-4 pt-6 pb-2 text-lg text-gray-700 bg-white rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-[#FF6B6B]"
+                                />
+                                <label
+                                htmlFor="pm-input"
+                                className={`
+                                    absolute left-4 text-gray-500 transition-all duration-200 ease-in-out
+                                    ${PM2_5 ? 'top-2 text-sm' : 'top-4 text-lg'}
+                                    peer-focus:top-2 peer-focus:text-sm
+                                `}
+                                >
+                                pm2.5
                                 </label>
                             </div>
                         </div>
