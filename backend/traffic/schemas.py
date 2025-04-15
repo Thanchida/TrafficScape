@@ -1,9 +1,5 @@
 from ninja import Schema
 
-# class TrafficSchema(Schema):
-#     latitude: str
-#     longitude: str
-
 
 class WeatherSchema(Schema):
     light: str
