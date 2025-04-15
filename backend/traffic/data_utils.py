@@ -1,5 +1,3 @@
-from sklearn.preprocessing import MinMaxScaler
-
 def remove_outliers_iqr(df, columns):
     for col in columns:
         Q1 = df[col].quantile(0.25)
@@ -16,10 +14,4 @@ def replace_missing_value(df, columns):
         if df[col].isnull().any():
             mean_val = df[col].mean()
             df[col].fillna(mean_val, inplace=True)
-    return df
-
-
-def normalize_column(df, column):
-    scaler = MinMaxScaler()
-    df[column] = scaler.fit_transform(df[[column]])
     return df
