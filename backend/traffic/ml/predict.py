@@ -4,6 +4,15 @@ import os
 MODEL_DIR = "traffic_model/models"
 SCALER_DIR = "traffic_model/scalers"
 
+
+def load_model(target):
+    model_path = os.path.join(MODEL_DIR, f"{target}_model.pkl")
+    return joblib.load(model_path)
+
+def load_scaler():
+    scaler_path = os.path.join(SCALER_DIR, "scaler.pkl")
+    return joblib.load(scaler_path)
+
 def predict(input_data):
     targets = [
         "current_speed",
@@ -11,15 +20,11 @@ def predict(input_data):
         "current_travel_time",
         "free_flow_travel_time"
     ]
+    scaler = load_scaler()
+    X_scaled = scaler.transform(input_data)
 
-    prediction_result = {}
-    scaler_path = os.path.join(SCALER_DIR, "scaler.pkl")
-    scaler = joblib.load(scaler_path)
+    result = {}
     for target in targets:
-        model_path = os.path.join(MODEL_DIR, f"{target}_model.pkl")
-        model = joblib.load(model_path)
-        df_new_scaled = scaler.transform(input_data)
-        prediction = model.predict(df_new_scaled)
-        prediction_result[target] = round(prediction[0], 2)
-        clean_result = {k: float(v) for k, v in prediction_result.items()}
-    return clean_result
+        model = load_model(target)
+        result[target] = round(float(model.predict(X_scaled)[0]), 2)
+    return result
