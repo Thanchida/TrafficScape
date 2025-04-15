@@ -1,0 +1,166 @@
+{
+	"info": {
+		"_postman_id": "42b45218-a6f0-42b7-a9bf-389692d8cfbf",
+		"name": "Prediction API Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44102729",
+		"_collection_link": "https://thanchida.postman.co/workspace/741435cf-f8b3-4a02-808c-d53c806e0cd7/collection/44102729-42b45218-a6f0-42b7-a9bf-389692d8cfbf?action=share&source=collection_link&creator=44102729"
+	},
+	"item": [
+		{
+			"name": "prediction_success",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should return 200 and contain data\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    let jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property(\"data\");",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"light\": \"120.0\",\n  \"temperature\": \"29.0\",\n  \"humidity\": \"60.0\",\n  \"pm2_5\": \"35.0\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/prediction/weather",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"prediction",
+						"weather"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "prediction_missing_field",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should return 422 and contain data\", function () {",
+							"    pm.response.to.have.status(422);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"light\": \"120.0\",\n  \"temperature\": \"29.0\",\n  \"pm2_5\": \"35.0\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/prediction/weather",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"prediction",
+						"weather"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "prediction_invalid_type",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should return 400 and contain data\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"light\": \"bright\",\n  \"temperature\": \"29.0\",\n  \"humidity\": \"60.0\",\n  \"pm2_5\": \"35.0\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/prediction/weather",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"prediction",
+						"weather"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
