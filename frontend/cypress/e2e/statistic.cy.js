@@ -59,5 +59,5 @@ describe('Statistic Page Tests', () => {
         cy.get('#correlation > a').click();
         cy.get('#weather-correlation').should('exist');
     });
-  });
+});
   
