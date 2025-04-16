@@ -5,9 +5,9 @@
     "passes": 3,
     "pending": 0,
     "failures": 0,
-    "start": "2025-04-16T07:58:11.830Z",
-    "end": "2025-04-16T07:58:14.338Z",
-    "duration": 2508,
+    "start": "2025-04-16T15:48:37.222Z",
+    "end": "2025-04-16T15:48:40.114Z",
+    "duration": 2892,
     "testsRegistered": 3,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "8ce2ad88-0ead-402d-9971-eea22fa0a2a9",
+      "uuid": "5e41ebc1-fabb-4d82-8756-42e3f440361f",
       "title": "",
       "fullFile": "cypress/e2e/prediction.cy.js",
       "file": "cypress/e2e/prediction.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "1fa82b7e-f04c-4d71-affd-e6f55c6d07f4",
+          "uuid": "4cfeec0d-0876-442f-80ab-e013aba5fd85",
           "title": "Prediction Page Tests",
           "fullFile": "",
           "file": "",
@@ -35,10 +35,10 @@
           "afterHooks": [],
           "tests": [
             {
-              "title": "TC_24: Verify that the weather input field is displayed",
-              "fullTitle": "Prediction Page Tests TC_24: Verify that the weather input field is displayed",
+              "title": "Verify that the weather input field is displayed",
+              "fullTitle": "Prediction Page Tests Verify that the weather input field is displayed",
               "timedOut": null,
-              "duration": 330,
+              "duration": 395,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -47,16 +47,16 @@
               "context": null,
               "code": "cy.get('input').should('have.length', 4);\ncy.get('#light-input').should('exist');\ncy.get('#temperature-input').should('exist');\ncy.get('#humidity-input').should('exist');\ncy.get('#pm-input').should('exist');",
               "err": {},
-              "uuid": "bfe55f2f-8a54-4b9a-8598-86e573e604bb",
-              "parentUUID": "1fa82b7e-f04c-4d71-affd-e6f55c6d07f4",
+              "uuid": "02722716-3807-4c6c-a591-c0f88fa9085c",
+              "parentUUID": "4cfeec0d-0876-442f-80ab-e013aba5fd85",
               "isHook": false,
               "skipped": false
             },
             {
-              "title": "TC_25: Verify that the weather input fields accept valid input and return correct values",
-              "fullTitle": "Prediction Page Tests TC_25: Verify that the weather input fields accept valid input and return correct values",
+              "title": "Verify that the weather input fields accept valid input and return correct values",
+              "fullTitle": "Prediction Page Tests Verify that the weather input fields accept valid input and return correct values",
               "timedOut": null,
-              "duration": 822,
+              "duration": 1159,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -65,16 +65,16 @@
               "context": null,
               "code": "cy.get('#light-input').type('270', {\n  force: true\n}).should('have.value', '270');\ncy.get('#temperature-input').type('70', {\n  force: true\n}).should('have.value', '70');\ncy.get('#humidity-input').type('35', {\n  force: true\n}).should('have.value', '35');\ncy.get('#pm-input').type('30', {\n  force: true\n}).should('have.value', '30');",
               "err": {},
-              "uuid": "27fa8196-7b02-4bee-a0c2-5c54b15b6a21",
-              "parentUUID": "1fa82b7e-f04c-4d71-affd-e6f55c6d07f4",
+              "uuid": "b05ddb3a-d47d-4320-b020-ea2000bd050f",
+              "parentUUID": "4cfeec0d-0876-442f-80ab-e013aba5fd85",
               "isHook": false,
               "skipped": false
             },
             {
-              "title": "TC_27: Verify that the traffic flow prediction result is displayed",
-              "fullTitle": "Prediction Page Tests TC_27: Verify that the traffic flow prediction result is displayed",
+              "title": "Verify that the traffic flow prediction result is displayed",
+              "fullTitle": "Prediction Page Tests Verify that the traffic flow prediction result is displayed",
               "timedOut": null,
-              "duration": 1264,
+              "duration": 1248,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -83,22 +83,22 @@
               "context": null,
               "code": "cy.get('#light-input').type('270', {\n  force: true\n});\ncy.get('#temperature-input').type('70', {\n  force: true\n});\ncy.get('#humidity-input').type('35', {\n  force: true\n});\ncy.get('#pm-input').type('30', {\n  force: true\n});\ncy.get('#predict-button').click();\ncy.get('#prediction-card > .grid').should('exist');",
               "err": {},
-              "uuid": "0c125fe0-2151-40ae-9875-709854c59409",
-              "parentUUID": "1fa82b7e-f04c-4d71-affd-e6f55c6d07f4",
+              "uuid": "e73b20ed-bb82-45a9-bc13-570f2ff08e97",
+              "parentUUID": "4cfeec0d-0876-442f-80ab-e013aba5fd85",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "bfe55f2f-8a54-4b9a-8598-86e573e604bb",
-            "27fa8196-7b02-4bee-a0c2-5c54b15b6a21",
-            "0c125fe0-2151-40ae-9875-709854c59409"
+            "02722716-3807-4c6c-a591-c0f88fa9085c",
+            "b05ddb3a-d47d-4320-b020-ea2000bd050f",
+            "e73b20ed-bb82-45a9-bc13-570f2ff08e97"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 2416,
+          "duration": 2802,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

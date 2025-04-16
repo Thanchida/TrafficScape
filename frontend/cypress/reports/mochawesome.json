@@ -5,9 +5,9 @@
     "passes": 2,
     "pending": 0,
     "failures": 0,
-    "start": "2025-04-16T07:58:04.592Z",
-    "end": "2025-04-16T07:58:07.558Z",
-    "duration": 2966,
+    "start": "2025-04-16T15:48:22.769Z",
+    "end": "2025-04-16T15:48:31.729Z",
+    "duration": 8960,
     "testsRegistered": 2,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "8b9bb617-ff84-4451-a0d0-52b3d85b64c1",
+      "uuid": "9c69629b-4fcb-4faa-b013-04728499485a",
       "title": "",
       "fullFile": "cypress/e2e/navbar.cy.js",
       "file": "cypress/e2e/navbar.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "7c2ac615-768a-4ab2-a73d-d74dd56809cb",
+          "uuid": "56195fb8-d10d-448a-b9ed-66bb5ce98cb2",
           "title": "Navbar Functionality Test",
           "fullFile": "",
           "file": "",
@@ -35,10 +35,10 @@
           "afterHooks": [],
           "tests": [
             {
-              "title": "TC_02: Verify Navbar renders all links correctly",
-              "fullTitle": "Navbar Functionality Test TC_02: Verify Navbar renders all links correctly",
+              "title": "Verify Navbar renders all links correctly",
+              "fullTitle": "Navbar Functionality Test Verify Navbar renders all links correctly",
               "timedOut": null,
-              "duration": 395,
+              "duration": 3889,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -47,16 +47,16 @@
               "context": null,
               "code": "cy.get('#nav-overview > a').should('contain', 'Overview').and('have.attr', 'href', '/');\ncy.get('#nav-statistic > a').should('contain', 'Statistic').and('have.attr', 'href', '/statistic');\ncy.get('#nav-prediction > a').should('contain', 'Traffic Prediction').and('have.attr', 'href', '/prediction');",
               "err": {},
-              "uuid": "19e1c508-e460-4dfb-a42f-7d47684d6a61",
-              "parentUUID": "7c2ac615-768a-4ab2-a73d-d74dd56809cb",
+              "uuid": "6dcd5307-3b57-4de1-9537-0703b71045c7",
+              "parentUUID": "56195fb8-d10d-448a-b9ed-66bb5ce98cb2",
               "isHook": false,
               "skipped": false
             },
             {
-              "title": "TC_03: Verify clicking on a link routes to correct page",
-              "fullTitle": "Navbar Functionality Test TC_03: Verify clicking on a link routes to correct page",
+              "title": "Verify clicking on a link routes to correct page",
+              "fullTitle": "Navbar Functionality Test Verify clicking on a link routes to correct page",
               "timedOut": null,
-              "duration": 2403,
+              "duration": 4908,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -65,21 +65,21 @@
               "context": null,
               "code": "cy.get('#nav-statistic > a').click();\ncy.url().should('include', '/statistic');\ncy.get('#nav-prediction > a').click();\ncy.url().should('include', '/prediction');\ncy.get('#nav-overview > a').click();\ncy.url().should('eq', 'http://localhost:3000/');",
               "err": {},
-              "uuid": "12ceaf3d-9a7c-42b4-9a87-9c0b785e5dae",
-              "parentUUID": "7c2ac615-768a-4ab2-a73d-d74dd56809cb",
+              "uuid": "376bbded-49c5-43bb-ade8-7b0860fecceb",
+              "parentUUID": "56195fb8-d10d-448a-b9ed-66bb5ce98cb2",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "19e1c508-e460-4dfb-a42f-7d47684d6a61",
-            "12ceaf3d-9a7c-42b4-9a87-9c0b785e5dae"
+            "6dcd5307-3b57-4de1-9537-0703b71045c7",
+            "376bbded-49c5-43bb-ade8-7b0860fecceb"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 2798,
+          "duration": 8797,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
