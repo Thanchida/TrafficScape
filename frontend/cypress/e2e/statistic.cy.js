@@ -3,19 +3,19 @@ describe('Statistic Page Tests', () => {
         cy.visit('http://localhost:3000/statistic');
     });
   
-    it('TC_11: Verify that the Menu Bar on the Statistic page exists', () => {
+    it('Verify that the Menu Bar on the Statistic page exists', () => {
         cy.get('#statistic-menu-bar').should('exist');
         cy.get('#descriptive > a').should('exist');
         cy.get('#distribution > a').should('exist'); 
         cy.get('#correlation > a').should('exist');
     });
   
-    it('TC_12: Verify that Descriptive Component on the Menu Bar', () => {
+    it('Verify that Descriptive Component on the Menu Bar', () => {
         cy.get('#descriptive > a').click();
         cy.contains('Sensor Data Descriptive').should('be.visible');
     });
   
-    it('TC_15: Verify that all weather descriptive data is shown when Descriptive menu is selected', () => {
+    it('Verify that all weather descriptive data is shown when Descriptive menu is selected', () => {
         cy.get('#descriptive > a').click();
         cy.contains('Light').should('be.visible');
         cy.get('#light-descriptive-card > .card-body').should('exist');
@@ -30,12 +30,12 @@ describe('Statistic Page Tests', () => {
         cy.get('#pm-descriptive-card > .card-body').should('exist');
     });
   
-    it('TC_16: Verify that clicking on each Distribution menu item routes to the correct content/section', () => {              
+    it('Verify that clicking on each Distribution menu item routes to the correct content/section', () => {              
         cy.get('#distribution > a').click();
         cy.contains('Sensor Data Distribution').should('be.visible');
     });
   
-    it('TC_19: Verify that all distribution chart is shown when Distribution menu is selected', () => {
+    it('Verify that all distribution chart is shown when Distribution menu is selected', () => {
         cy.get('#distribution > a').click();
         cy.contains('Light Distribution').should('be.visible');
         cy.get('#light-distribution').should('exist');
@@ -50,12 +50,12 @@ describe('Statistic Page Tests', () => {
         cy.get('#pm-distribution').scrollIntoView().should('exist');
     });
   
-    it('TC_20: Verify that clicking on each Correlation menu item routes to the correct content/section', () => {  
+    it('Verify that clicking on each Correlation menu item routes to the correct content/section', () => {  
         cy.get('#correlation > a').click();
         cy.contains('Sensor Data Correlation').should('be.visible');
     });
 
-    it('TC_23: Verify that weather correlation table is shown when Distribution menu is selected', () => {
+    it('Verify that weather correlation table is shown when Distribution menu is selected', () => {
         cy.get('#correlation > a').click();
         cy.get('#weather-correlation').should('exist');
     });
