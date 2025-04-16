@@ -30,6 +30,9 @@
     "daisyui": "^5.0.9",
     "eslint": "^9",
     "eslint-config-next": "15.2.3",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^5.0.0",
+    "mochawesome-report-generator": "^6.2.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

@@ -1,0 +1,162 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-04-16T07:58:08.555Z",
+    "end": "2025-04-16T07:58:10.854Z",
+    "duration": 2299,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "1f9d7267-996e-4857-a9fc-1bff245c64d3",
+      "title": "",
+      "fullFile": "cypress/e2e/overview.cy.js",
+      "file": "cypress/e2e/overview.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "a47ed0a5-44e5-4bef-b54a-2d2693c88ba0",
+          "title": "Overview Page Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "TC_07: Verify the light vs Speed chart displays",
+              "fullTitle": "Overview Page Test TC_07: Verify the light vs Speed chart displays",
+              "timedOut": null,
+              "duration": 401,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.contains('Light vs Speed').scrollIntoView().should('be.visible');\ncy.get('#light-speed-chart').scrollIntoView().should('exist');",
+              "err": {},
+              "uuid": "45aecf86-1ae1-4867-9c47-ceb1df18aeb7",
+              "parentUUID": "a47ed0a5-44e5-4bef-b54a-2d2693c88ba0",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC_08: Verify the PM2.5 vs Travel Time chart displays",
+              "fullTitle": "Overview Page Test TC_08: Verify the PM2.5 vs Travel Time chart displays",
+              "timedOut": null,
+              "duration": 261,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.contains('PM2.5 vs Travel Time').scrollIntoView().should('be.visible');\ncy.get('#pm-time-chart').scrollIntoView().should('exist');",
+              "err": {},
+              "uuid": "0095edf6-3f86-4f98-abd7-c39577dab9a9",
+              "parentUUID": "a47ed0a5-44e5-4bef-b54a-2d2693c88ba0",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC_09: Verify the PM2.5 vs Speed chart displays correctly based on data",
+              "fullTitle": "Overview Page Test TC_09: Verify the PM2.5 vs Speed chart displays correctly based on data",
+              "timedOut": null,
+              "duration": 257,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.contains('PM2.5 vs Speed').should('be.visible');\ncy.get('#pm-speed-chart').should('exist');",
+              "err": {},
+              "uuid": "109dcce1-126e-48b7-bf96-2014f5d60b08",
+              "parentUUID": "a47ed0a5-44e5-4bef-b54a-2d2693c88ba0",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC_10: Verify the Correlation Matrix table displays correctly based on data",
+              "fullTitle": "Overview Page Test TC_10: Verify the Correlation Matrix table displays correctly based on data",
+              "timedOut": null,
+              "duration": 1132,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.contains('Correlation Matrix').should('be.visible');\ncy.get('#traffic-weather-correlation').should('exist');\ncy.get('#traffic-weather-correlation').within(() => {\n  cy.contains('current_speed').should('exist');\n  cy.contains('pm2_5').should('exist');\n  cy.contains('1.00').should('exist');\n});",
+              "err": {},
+              "uuid": "119d3d8b-b243-4a17-95b1-da8464360180",
+              "parentUUID": "a47ed0a5-44e5-4bef-b54a-2d2693c88ba0",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "45aecf86-1ae1-4867-9c47-ceb1df18aeb7",
+            "0095edf6-3f86-4f98-abd7-c39577dab9a9",
+            "109dcce1-126e-48b7-bf96-2014f5d60b08",
+            "119d3d8b-b243-4a17-95b1-da8464360180"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2051,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
