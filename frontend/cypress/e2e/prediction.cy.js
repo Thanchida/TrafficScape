@@ -18,7 +18,7 @@ describe('Prediction Page Tests', () => {
         cy.get('#pm-input').type('30').should('have.value', '30');
     });
   
-    it('TC_28: Verify that the traffic flow prediction result is displayed', () => {
+    it('TC_27: Verify that the traffic flow prediction result is displayed', () => {
         cy.get('#light-input').type('270')
         cy.get('#temperature-input').type('70')
         cy.get('#humidity-input').type('35')
