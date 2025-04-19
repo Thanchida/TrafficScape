@@ -6,6 +6,7 @@ You can follow this installation guide [here](Installation.md)
 
 ## Running the Application
 default server is [localhost:3000](http://localhost:3000/)
+
 **Run the Backend Development Server**
 1. Navigate to the Backend directory
 ```commandline
