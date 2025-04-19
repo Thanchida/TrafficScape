@@ -70,16 +70,6 @@ class OverviewController:
                     FROM combined_weather_traffic
                 """)
 
-                # result = cs.fetchall()
-                # data = {
-                #     "light": [row[0] for row in result],
-                #     "temperature": [row[1] for row in result],
-                #     "humidity": [row[2] for row in result],
-                #     "pm2_5": [row[3] for row in result],
-                #     "current_speed": [row[4] for row in result],
-                #     "current_travel_time": [row[5] for row in result]
-                # }
-                # df = pd.DataFrame(data)
                 columns = ["light", "temperature", "humidity", "pm2_5", "current_speed", "current_travel_time"]
                 data = [CorrelationSchema(**dict(zip(columns, row))) for row in cs.fetchall()]
                 df = pd.DataFrame([d.dict() for d in data])
