@@ -2,7 +2,7 @@ from ninja_extra import api_controller
 from ninja_extra import http_post
 from django.http import JsonResponse
 import pandas as pd
-from ..schemas import WeatherSchema
+from ..schemas.prediction import WeatherInputSchema
 from ..ml.train import train_model
 from ..ml.predict import predict
 
@@ -10,7 +10,7 @@ from ..ml.predict import predict
 @api_controller("/prediction")
 class PredictionController:
     @http_post('/weather')
-    def post_weather_data(self, data: WeatherSchema):
+    def post_weather_data(self, data: WeatherInputSchema):
         try:
             light = float(data.light)
             temperature = float(data.temperature)
