@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from mysite.db import pool
 import pandas as pd
 from ..data_utils import remove_outliers_iqr, replace_missing_value
+from ..schemas.overview import PMSpeedSchema, PMTimeSchema, LightSpeedSchema, CorrelationSchema
 
 @api_controller("/overview")
 class OverviewController:
@@ -16,12 +17,9 @@ class OverviewController:
                     FROM combined_weather_traffic
                 """)
 
-                result = cs.fetchall()
-                data = {
-                    "pm2_5": [row[0] for row in result],
-                    "current_speed": [row[1] for row in result],
-                }
-                df = pd.DataFrame(data)
+                columns = ["pm2_5", "current_speed"]
+                data = [PMSpeedSchema(**dict(zip(columns, row))) for row in cs.fetchall()]
+                df = pd.DataFrame([d.dict() for d in data])
                 df = remove_outliers_iqr(df, ['pm2_5'])
                 return JsonResponse({"msg": "Descriptive statistics retrieved successfully", "data": df.to_dict(orient="records")}, status=200)
             finally:
@@ -37,12 +35,9 @@ class OverviewController:
                     FROM combined_weather_traffic
                 """)
 
-                result = cs.fetchall()
-                data = {
-                    "pm2_5": [row[0] for row in result],
-                    "current_travel_time": [row[1] for row in result],
-                }
-                df = pd.DataFrame(data)
+                columns = ["pm2_5", "current_travel_time"]
+                data = [PMTimeSchema(**dict(zip(columns, row))) for row in cs.fetchall()]
+                df = pd.DataFrame([d.dict() for d in data])
                 df = remove_outliers_iqr(df, ['pm2_5'])
                 return JsonResponse({"msg": "Descriptive statistics retrieved successfully", "data": df.to_dict(orient="records")}, status=200)
             finally:
@@ -57,12 +52,9 @@ class OverviewController:
                     FROM combined_weather_traffic
                 """)
 
-                result = cs.fetchall()
-                data = {
-                    "light": [row[0] for row in result],
-                    "current_speed": [row[1] for row in result],
-                }
-                df = pd.DataFrame(data)
+                columns = ["light", "current_speed"]
+                data = [LightSpeedSchema(**dict(zip(columns, row))) for row in cs.fetchall()]
+                df = pd.DataFrame([d.dict() for d in data])
                 df = remove_outliers_iqr(df, ['light'])
                 return JsonResponse({"msg": "Descriptive statistics retrieved successfully", "data": df.to_dict(orient="records")}, status=200)
             finally:
@@ -78,16 +70,19 @@ class OverviewController:
                     FROM combined_weather_traffic
                 """)
 
-                result = cs.fetchall()
-                data = {
-                    "light": [row[0] for row in result],
-                    "temperature": [row[1] for row in result],
-                    "humidity": [row[2] for row in result],
-                    "pm2_5": [row[3] for row in result],
-                    "current_speed": [row[4] for row in result],
-                    "current_travel_time": [row[5] for row in result]
-                }
-                df = pd.DataFrame(data)
+                # result = cs.fetchall()
+                # data = {
+                #     "light": [row[0] for row in result],
+                #     "temperature": [row[1] for row in result],
+                #     "humidity": [row[2] for row in result],
+                #     "pm2_5": [row[3] for row in result],
+                #     "current_speed": [row[4] for row in result],
+                #     "current_travel_time": [row[5] for row in result]
+                # }
+                # df = pd.DataFrame(data)
+                columns = ["light", "temperature", "humidity", "pm2_5", "current_speed", "current_travel_time"]
+                data = [CorrelationSchema(**dict(zip(columns, row))) for row in cs.fetchall()]
+                df = pd.DataFrame([d.dict() for d in data])
                 df = remove_outliers_iqr(df, ['light', 'temperature'])
                 df = replace_missing_value(df, ['light', 'temperature', 'humidity', 'pm2_5'])
                 corr = df.corr(method='pearson').round(3)
