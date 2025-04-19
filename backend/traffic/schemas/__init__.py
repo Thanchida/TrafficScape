@@ -1,7 +1,8 @@
 from .overview import PMSpeedSchema, PMTimeSchema, LightSpeedSchema, CorrelationSchema
-# from .overview import OverviewController
+from .statistic import WeatherSchema, DescriptiveStatSchema, StatBlock
 # from .prediction import PredictionController
 
 __all__ = [
-    PMSpeedSchema, PMTimeSchema, LightSpeedSchema, CorrelationSchema
+    PMSpeedSchema, PMTimeSchema, LightSpeedSchema, CorrelationSchema, 
+    WeatherSchema, DescriptiveStatSchema, StatBlock
 ]

@@ -9,38 +9,19 @@ const poppins = Poppins({
 
 const STATISTIC_URL = '/api/descriptive/';
 
-interface DescriptiveLight {
-  avg_light: number;
-  stddev_light: number;
-  min_light: number;
-  max_light: number;
+
+interface descriptiveData {
+  avg: number;
+  stddev: number;
+  min: number;
+  max: number;
 }
 
-interface descriptiveTemperature {
-  avg_temperature: number;
-  stddev_temperature: number;
-  min_temperature: number;
-  max_temperature: number;
-}
-
-interface descriptiveHumidity{
-  avg_humidity: number;
-  stddev_humidity: number;
-  min_humidity: number;
-  max_humidity: number;
-}
-
-interface descriptivePM{
-  avg_pm2_5: number;
-  stddev_pm2_5: number;
-  min_pm2_5: number;
-  max_pm2_5: number;
-}
 export default function Descriptive() {
-  const [descriptiveLightData, setDescriptiveLightData] = useState<DescriptiveLight | null>(null);
-  const [descriptiveTemperatureData, setDescriptiveTemperatureData] = useState<descriptiveTemperature | null>(null);
-  const [descriptiveHumidityData, setDescriptiveHumidityData] = useState<descriptiveHumidity | null>(null);
-  const [descriptivePMData, setDescriptivePMData] = useState<descriptivePM | null>(null);
+  const [descriptiveLightData, setDescriptiveLightData] = useState<descriptiveData | null>(null);
+  const [descriptiveTemperatureData, setDescriptiveTemperatureData] = useState<descriptiveData | null>(null);
+  const [descriptiveHumidityData, setDescriptiveHumidityData] = useState<descriptiveData | null>(null);
+  const [descriptivePMData, setDescriptivePMData] = useState<descriptiveData | null>(null);
 
   useEffect(() => {
     console.log('fetch');
@@ -82,10 +63,10 @@ export default function Descriptive() {
                 <h2 className="text-xl font-bold">Light</h2>
                 {descriptiveLightData ? (
                 <div>
-                  <p>Average Light: {descriptiveLightData.avg_light}</p>
-                  <p>Standard Deviation Light: {descriptiveLightData.stddev_light}</p>
-                  <p>Min Light: {descriptiveLightData.min_light}</p>
-                  <p>Max Light: {descriptiveLightData.max_light}</p>
+                  <p>Average Light: {descriptiveLightData.avg}</p>
+                  <p>Standard Deviation Light: {descriptiveLightData.stddev}</p>
+                  <p>Min Light: {descriptiveLightData.min}</p>
+                  <p>Max Light: {descriptiveLightData.max}</p>
                 </div>
               ) : (
                 <p>Loading...</p>
@@ -99,10 +80,10 @@ export default function Descriptive() {
                 <h2 className="text-xl font-bold">Temperature</h2>
                 {descriptiveTemperatureData ? (
                 <div>
-                  <p>Average Temperature: {descriptiveTemperatureData.avg_temperature}</p>
-                  <p>Standard Deviation Temperature: {descriptiveTemperatureData.stddev_temperature}</p>
-                  <p>Min Temperature: {descriptiveTemperatureData.min_temperature}</p>
-                  <p>Max Temperature: {descriptiveTemperatureData.max_temperature}</p>
+                  <p>Average Temperature: {descriptiveTemperatureData.avg}</p>
+                  <p>Standard Deviation Temperature: {descriptiveTemperatureData.stddev}</p>
+                  <p>Min Temperature: {descriptiveTemperatureData.min}</p>
+                  <p>Max Temperature: {descriptiveTemperatureData.max}</p>
                 </div>
               ) : (
                 <p>Loading...</p>
@@ -118,10 +99,10 @@ export default function Descriptive() {
               <h2 className="text-xl font-bold">Humidity</h2>
               {descriptiveHumidityData ? (
                 <div>
-                  <p>Average Humidity: {descriptiveHumidityData.avg_humidity}</p>
-                  <p>Standard Deviation Humidity: {descriptiveHumidityData.stddev_humidity}</p>
-                  <p>Min Humidity: {descriptiveHumidityData.min_humidity}</p>
-                  <p>Max Humidity: {descriptiveHumidityData.max_humidity}</p>
+                  <p>Average Humidity: {descriptiveHumidityData.avg}</p>
+                  <p>Standard Deviation Humidity: {descriptiveHumidityData.stddev}</p>
+                  <p>Min Humidity: {descriptiveHumidityData.min}</p>
+                  <p>Max Humidity: {descriptiveHumidityData.max}</p>
                 </div>
               ) : (
                 <p>Loading...</p>
@@ -135,10 +116,10 @@ export default function Descriptive() {
               <h2 className="text-xl font-bold">Pm 2.5</h2>
               {descriptivePMData ? (
                 <div>
-                  <p>Average PM2.5: {descriptivePMData.avg_pm2_5}</p>
-                  <p>Standard Deviation PM2.5: {descriptivePMData.stddev_pm2_5}</p>
-                  <p>Min PM2.5: {descriptivePMData.min_pm2_5}</p>
-                  <p>Max PM2.5: {descriptivePMData.max_pm2_5}</p>
+                  <p>Average PM2.5: {descriptivePMData.avg}</p>
+                  <p>Standard Deviation PM2.5: {descriptivePMData.stddev}</p>
+                  <p>Min PM2.5: {descriptivePMData.min}</p>
+                  <p>Max PM2.5: {descriptivePMData.max}</p>
                 </div>
               ) : (
                 <p>Loading...</p>

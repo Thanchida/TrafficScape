@@ -1,11 +1,11 @@
+import pandas as pd
 from flask import abort
 from ninja_extra import api_controller
-from ninja_extra import http_post, http_get
-from django.conf import settings
+from ninja_extra import http_get
 from django.http import JsonResponse
 from mysite.db import pool
 from ..data_utils import remove_outliers_iqr
-import pandas as pd
+from ..schemas.statistic import WeatherSchema, DescriptiveStatSchema, StatBlock
 
 
 @api_controller("/statistic")
@@ -19,14 +19,9 @@ class StatisticController:
                     FROM combined_weather_traffic
                 """)
 
-                result = cs.fetchall()
-                data = {
-                    "light": [row[0] for row in result],
-                    "temperature": [row[1] for row in result],
-                    "humidity": [row[2] for row in result],
-                    "pm2_5": [row[3] for row in result],
-                }
-                df = pd.DataFrame(data)
+                columns = ["light","temperature", "humidity", "pm2_5"]
+                data = [WeatherSchema(**dict(zip(columns, row))) for row in cs.fetchall()]
+                df = pd.DataFrame([d.dict() for d in data])
                 return JsonResponse({"msg": "Descriptive statistics retrieved successfully", "data": df.to_dict(orient="records")}, status=200)
             finally:
                 print(f"Idle connections in the pool: {len(pool._idle_cache)}")
@@ -57,33 +52,13 @@ class StatisticController:
                 """)
 
                 result = cs.fetchone()
-                descriptive_stat = {
-                    "light": {
-                        "avg_light": result[0],
-                        "stddev_light": result[1],
-                        "min_light": result[2],
-                        "max_light": result[3],
-                    },
-                    "temperature": {
-                        "avg_temperature": result[4],
-                        "stddev_temperature": result[5],
-                        "min_temperature": result[6],
-                        "max_temperature": result[7],
-                    },
-                    "humidity": {
-                        "avg_humidity": result[8],
-                        "stddev_humidity": result[9],
-                        "min_humidity": result[10],
-                        "max_humidity": result[11],
-                    },
-                    "pm2_5": {
-                        "avg_pm2_5": result[12],
-                        "stddev_pm2_5": result[13],
-                        "min_pm2_5": result[14],
-                        "max_pm2_5": result[15],
-                    }
-                }
-            
+                data = DescriptiveStatSchema(
+                    light=StatBlock(avg=result[0], stddev=result[1], min=result[2], max=result[3]),
+                    temperature=StatBlock(avg=result[4], stddev=result[5], min=result[6], max=result[7]),
+                    humidity=StatBlock(avg=result[8], stddev=result[9], min=result[10], max=result[11]),
+                    pm2_5=StatBlock(avg=result[12], stddev=result[13], min=result[14], max=result[15])
+                )
+                descriptive_stat = data.dict()
                 return JsonResponse({"msg": "Descriptive statistics retrieved successfully", "data": descriptive_stat}, status=200)
             finally:
                 print(f"Idle connections in the pool: {len(pool._idle_cache)}")
@@ -97,14 +72,9 @@ class StatisticController:
                     FROM combined_weather_traffic
                 """)
 
-                result = cs.fetchall()
-                data = {
-                    "light": [row[0] for row in result],
-                    "temperature": [row[1] for row in result],
-                    "humidity": [row[2] for row in result],
-                    "pm2_5": [row[3] for row in result],
-                }
-                df = pd.DataFrame(data)
+                columns = ["light", "temperature", "humidity", "pm2_5"]
+                data = [WeatherSchema(**dict(zip(columns, row))) for row in cs.fetchall()]
+                df = pd.DataFrame([d.dict() for d in data])
                 df = remove_outliers_iqr(df, ['light', 'temperature', 'humidity', 'pm2_5'])
                 corr_matrix = df.corr(method='pearson')
                 corr_dict = corr_matrix.round(3).to_dict()
