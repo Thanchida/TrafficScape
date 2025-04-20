@@ -64,3 +64,17 @@ npm install
 ```commandline
 npm run dev
 ```
+
+### Node-RED Flow
+#### 1. Import the Flow into Node-RED
+
+1. Open your Node-RED.
+2. Click the menu (☰) > **Import**.
+3. Paste the contents of `my-node-red-flow.json`.
+4. Click **Import** to add the flow to your workspace.
+
+#### 2. Update the Traffic API HTTP Request Node
+
+1. Double-click the **Traffic API** node in the flow.
+2. Replace `<api-key>` with your actual API key.
+4. Click **Done**, then **Deploy** the flow to apply changes.

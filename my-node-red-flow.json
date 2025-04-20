@@ -1,0 +1,208 @@
+[
+    {
+        "id": "51f8feb2f310ccc0",
+        "type": "tab",
+        "label": "TrafficScape",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a6e2609ababf5f8b",
+        "type": "mqtt in",
+        "z": "51f8feb2f310ccc0",
+        "name": "",
+        "topic": "b6610545812/weather",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "4a0e8ad4705205dc",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 320,
+        "y": 320,
+        "wires": [
+            [
+                "f4f218817593900c",
+                "650ef50cd7a0e568",
+                "51864a3c198a131f"
+            ]
+        ]
+    },
+    {
+        "id": "51864a3c198a131f",
+        "type": "http request",
+        "z": "51f8feb2f310ccc0",
+        "name": "Location API",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://ip-api.com/json/",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 570,
+        "y": 400,
+        "wires": [
+            [
+                "f4f218817593900c"
+            ]
+        ]
+    },
+    {
+        "id": "f4f218817593900c",
+        "type": "http request",
+        "z": "51f8feb2f310ccc0",
+        "name": "Traffic API",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/xml?key=<api-key>&point={{payload.lat}},{{payload.lon}}",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 540,
+        "y": 500,
+        "wires": [
+            [
+                "121246fd365894f9"
+            ]
+        ]
+    },
+    {
+        "id": "38be93776702a0fa",
+        "type": "template",
+        "z": "51f8feb2f310ccc0",
+        "name": "Insert Traffic Flow",
+        "field": "topic",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "INSERT INTO traffic_flow_data (frc, current_speed, free_flow_speed, current_travel_time, free_flow_travel_time, confidence) \nVALUES ('{{payload.flowSegmentData.frc}}', \n        {{payload.flowSegmentData.currentSpeed}}, \n        {{payload.flowSegmentData.freeFlowSpeed}}, \n        {{payload.flowSegmentData.currentTravelTime}}, \n        {{payload.flowSegmentData.freeFlowTravelTime}}, \n        {{payload.flowSegmentData.confidence}});",
+        "output": "str",
+        "x": 850,
+        "y": 500,
+        "wires": [
+            [
+                "228e7d38ca7bad1b"
+            ]
+        ]
+    },
+    {
+        "id": "121246fd365894f9",
+        "type": "xml",
+        "z": "51f8feb2f310ccc0",
+        "name": "",
+        "property": "payload",
+        "attr": "",
+        "chr": "_",
+        "x": 690,
+        "y": 500,
+        "wires": [
+            [
+                "38be93776702a0fa"
+            ]
+        ]
+    },
+    {
+        "id": "228e7d38ca7bad1b",
+        "type": "mysql",
+        "z": "51f8feb2f310ccc0",
+        "mydb": "3861a4dd90df9e70",
+        "name": "b6610545812",
+        "x": 880,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b31cfd54ccf617a5",
+        "type": "template",
+        "z": "51f8feb2f310ccc0",
+        "name": "Insert weather",
+        "field": "topic",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "INSERT INTO weather_data (temperature, humidity, light, pm2_5) \nVALUES (:temperature, :humidity, :light, :pm2_5);\n",
+        "output": "str",
+        "x": 700,
+        "y": 320,
+        "wires": [
+            [
+                "228e7d38ca7bad1b"
+            ]
+        ]
+    },
+    {
+        "id": "650ef50cd7a0e568",
+        "type": "function",
+        "z": "51f8feb2f310ccc0",
+        "name": "function 1",
+        "func": "msg.payload = {\n    temperature: msg.payload.temperature !== null ? msg.payload.temperature : 0,\n    humidity: msg.payload.humidity !== null ? msg.payload.humidity: 0,\n    light: msg.payload.light !== null ? msg.payload.light : 0,\n    pm2_5: msg.payload.pm2_5 !== null ? msg.payload.pm2_5 : 0\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 320,
+        "wires": [
+            [
+                "b31cfd54ccf617a5"
+            ]
+        ]
+    },
+    {
+        "id": "4a0e8ad4705205dc",
+        "type": "mqtt-broker",
+        "name": "CPE Broker",
+        "broker": "iot.cpe.ku.ac.th",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "3861a4dd90df9e70",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "iot.cpe.ku.ac.th",
+        "port": "3306",
+        "db": "b6610545812",
+        "tz": "+07:00",
+        "charset": "UTF8"
+    }
+]
